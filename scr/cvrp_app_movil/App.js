@@ -1,21 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react'
+import {View, Text, StyleSheet, Image, Button, Alert, ImageBackground, 
+  TouchableOpacity, TextInput, ScrollView } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import Login from './src/Login'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+var appNavigator = 
+class CVRP extends Component {
+    render(){
+      return(
+        <Login></Login> 
+      )
+
+  }
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+export default CVRP
