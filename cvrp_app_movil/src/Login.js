@@ -7,6 +7,7 @@ import AuthContext from "./AuthContext"
 
 
 const image = require("../images/fondo.jpg");
+
 const Login = ({navigation}) => {
 
   const { signIn } = React.useContext(AuthContext);

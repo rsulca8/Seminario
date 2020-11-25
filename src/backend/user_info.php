@@ -6,6 +6,7 @@
     error_reporting(E_ALL);
 
     
+    header('Content-Type: application/json');
 
     
     if (isset($params["user"])){

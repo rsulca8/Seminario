@@ -1,7 +1,8 @@
 CREATE DATABASE cvrp_app;
 CREATE USER 'rsulca8'@'localhost' IDENTIFIED WITH mysql_native_password BY 'cafayate';
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, DROP, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES 
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, REFERENCES, INDEX, DROP, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES 
     ON cvrp_app.* TO 'rsulca8'@'localhost';
+
 
 CREATE TABLE Clientes(
     id_cliente int(6) primary key auto_increment not null ,
@@ -23,6 +24,12 @@ INSERT INTO Clientes VALUES (
     "desempleado y pobre S.A"
     );
 
+
+CREATE TABLE Rubros(
+    id_rubro int(3) primary key auto_increment not null,
+    nombre_rubro varchar(20) not null
+);
+
 CREATE TABLE Productos(
     id_producto int(6) primary key auto_increment not null,
     nombre_producto varchar(50) not null,
@@ -30,8 +37,11 @@ CREATE TABLE Productos(
     codigo_barra_producto int(13) not null,
     unidad_medida_id_producto varchar(10),
     marca_producto varchar(13),
-    precio_producto real,
-    imagen_producto blob
+    precio_producto real not null,
+    imagen_producto blob,
+    id_rubro int(6) not null,
+    stock int(6) not null,
+    FOREIGN KEY (id_rubro) REFERENCES Rubros(id_rubro) 
 );
 
 INSERT INTO Productos(
@@ -50,24 +60,5 @@ INSERT INTO Productos(
     10.85
 );
 
-CREATE TABLE Productos(
-    id_producto int(6) primary key auto_increment not null,
-    nombre_producto varchar(50) not null,
-    descuento_producto varchar(10) not null,
-    codigo_barra_producto int(13) not null,
-    unidad_medida_id_producto varchar(10),
-    marca_producto varchar(13),
-    precio_producto real,
-    imagen_producto blob
-);
 
-CREATE TABLE Productos(
-    id_producto int(6) primary key auto_increment not null,
-    nombre_producto varchar(50) not null,
-    descuento_producto varchar(10) not null,
-    codigo_barra_producto int(13) not null,
-    unidad_medida_id_producto varchar(10),
-    marca_producto varchar(13),
-    precio_producto real,
-    imagen_producto blob
-);
+

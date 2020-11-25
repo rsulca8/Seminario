@@ -6,6 +6,7 @@
 
     require("connection.php");
     //localhost/?create_user=true&user=fulano&password=asdf&email=fulano@gmail.com&nombre=cosme&apellido=fulanito
+    header('Content-Type: application/json');
 
     if (isset($params["user"])){
         $user = $params["user"];

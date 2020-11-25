@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const END_POINT = "http://192.168.100.14/"
+const END_POINT = "http://192.168.100.14/cvrp/"
 
 class API{
     //Método asíncrono
