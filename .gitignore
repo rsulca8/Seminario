@@ -1,4 +1,5 @@
-scr/cvrp_app_movil/node_modules/**/*
+cvrp_app_movil/node_modules/**/*
+cvrp_app_movil/node_modules/**/*
 .expo/*
 npm-debug.*
 *.jks
