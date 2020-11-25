@@ -22,3 +22,52 @@ INSERT INTO Clientes VALUES (
     "cafayate",
     "desempleado y pobre S.A"
     );
+
+CREATE TABLE Productos(
+    id_producto int(6) primary key auto_increment not null,
+    nombre_producto varchar(50) not null,
+    descuento_producto varchar(10) not null,
+    codigo_barra_producto int(13) not null,
+    unidad_medida_id_producto varchar(10),
+    marca_producto varchar(13),
+    precio_producto real,
+    imagen_producto blob
+);
+
+INSERT INTO Productos(
+    nombre_producto, 
+    descuento_producto,
+    codigo_barra_producto,
+    unidad_medida_id_producto,
+    marca_producto,
+    precio_producto) 
+    VALUES (
+    "ACEITE DE GIRASOL BOTELLA DE PLASTICO - 1500 CC", 
+    "0", 
+    "00000000", 
+    "litro",
+    "ZANONI",
+    10.85
+);
+
+CREATE TABLE Productos(
+    id_producto int(6) primary key auto_increment not null,
+    nombre_producto varchar(50) not null,
+    descuento_producto varchar(10) not null,
+    codigo_barra_producto int(13) not null,
+    unidad_medida_id_producto varchar(10),
+    marca_producto varchar(13),
+    precio_producto real,
+    imagen_producto blob
+);
+
+CREATE TABLE Productos(
+    id_producto int(6) primary key auto_increment not null,
+    nombre_producto varchar(50) not null,
+    descuento_producto varchar(10) not null,
+    codigo_barra_producto int(13) not null,
+    unidad_medida_id_producto varchar(10),
+    marca_producto varchar(13),
+    precio_producto real,
+    imagen_producto blob
+);
