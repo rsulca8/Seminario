@@ -60,7 +60,9 @@ function Productos({navigation}){
                                     <Card>
                                         <CardItem>
                                         <Left>
-                                            <Thumbnail source={noImage} />
+                                            <Thumbnail source={
+                                                {uri: `data:image/jpeg;base64,${item.imagen_producto}`}
+                                            } />
                                             <Body>
                                                 <Text>{item.nombre_producto}</Text>
                                                 <Text note>{item.marca_producto}</Text>

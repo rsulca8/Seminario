@@ -38,7 +38,7 @@ CREATE TABLE Productos(
     unidad_medida_id_producto varchar(10),
     marca_producto varchar(13),
     precio_producto real not null,
-    imagen_producto blob,
+    imagen_producto MEDIUMBLOB,
     id_rubro int(6) not null,
     stock int(6) not null,
     FOREIGN KEY (id_rubro) REFERENCES Rubros(id_rubro) 

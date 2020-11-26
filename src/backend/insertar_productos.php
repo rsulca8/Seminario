@@ -4,6 +4,7 @@
     error_reporting(E_ALL);
 
     require("connection.php");
+    require("get_imagenes.php");
 
 
     function getRubroId($rubros, $buscado){
@@ -18,8 +19,6 @@
         return $i--;
     }
 
-
-
     function insertarProductos($conn){
         $rubros = getRubros($conn);
         $fila = 1;
@@ -30,6 +29,9 @@
             //while($datos !== FALSE){
             for($i=0; $i<141; $i++){
                 $datos = fgetcsv($gestor, 1000, ","); 
+                echo $datos[1];
+                $imagen = get_imagen($datos[1]);
+                
                 $producto = array(
                     "nombre_producto" => $datos[1], 
                     "descuento_producto" => 0,
@@ -37,20 +39,19 @@
                     "unidad_medida_id_producto" => "litros",
                     "marca_producto" => $datos[3],
                     "precio_producto" => $datos[5],
-                    "stock" => 0,
+                    "stock" => 10,
                     "rubro_id" => getRubroId($rubros, $datos[2]),
+                    "imagen_producto" => $imagen
                 );
                 //print_r($rubros);
                 insertarProducto($conn, $producto);
                 echo "<p>Fila: $i: <br /></p>\n";
-                print_r($producto);
+                //print_r($producto);
             }
     
             fclose($gestor);
         }
     }
-
-
 
     function insertarRubros($conn){
         $fila = 1;

@@ -57,7 +57,8 @@
             marca_producto,
             precio_producto,
             stock,
-            id_rubro) 
+            id_rubro,
+            imagen_producto) 
             VALUES (
             "%s", 
             %d, 
@@ -66,7 +67,8 @@
             "%s",
             %f,
             %d,
-            %d
+            %d,
+            "%s"
             )',
             $producto["nombre_producto"],
             $producto["descuento_producto"],
@@ -75,7 +77,8 @@
             $producto["marca_producto"],
             $producto["precio_producto"],
             $producto["stock"],
-            $producto["rubro_id"]
+            $producto["rubro_id"],
+            $producto["imagen_producto"]
         );
         echo $sql;
         $resultado = $conn->query($sql);
