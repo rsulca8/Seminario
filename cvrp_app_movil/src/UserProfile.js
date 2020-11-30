@@ -17,7 +17,6 @@ function UserProfile({navigation}){
         navigation.navigate('Login')
     }
 
-
     useEffect(() => {
         const user_data = API.getDatosUsuarioLocal()
     }, []);

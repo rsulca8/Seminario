@@ -14,8 +14,11 @@ import CreateUser from './src/createUser'
 import UserProfile from './src/UserProfile'
 import AuthContext from './src/AuthContext'
 import Home from "./src/Home"
+import Pedido from './src/Pedido'
 
 function App(){
+
+  
   //Reducer son funciones que dado un estado previo y  
   //una acción y te devuelve un estado nuevo
   const [state, dispatch] = React.useReducer(
@@ -25,17 +28,20 @@ function App(){
           return {
             ...prevState,
             userToken: action.token,
+            userId: null,
             isLoading: false,
           };
         case 'SIGN_IN':
           return {
             ...prevState,
             isSignout: false,
+            userId: action.userId,
             userToken: action.token,
           };
-        case 'SIGN_OUT':
-          return {
+          case 'SIGN_OUT':
+            return {
             ...prevState,
+            userId: action.userId,
             isSignout: true,
             userToken: null,
           };
@@ -45,6 +51,7 @@ function App(){
       isLoading: true,
       isSignout: false,
       userToken: null,
+      userId: null
     }
   );
 
@@ -57,14 +64,15 @@ function App(){
       let userToken;
 
       try {
-        userToken = await AsyncStorage.getItem('@authToken');
+        userData = await AsyncStorage.getItem('@authToken');
+        userData = JSON.parse(userData);
       } catch (e) {
         console.log("Falló en obtener el token")
       }
 
       // Después de restaurar el token hay que validarlo :)
       loadFonts();
-      dispatch({ type: 'RESTORE_TOKEN'});
+      dispatch({ type: 'RESTORE_TOKEN', token: userData.usuario, userId: userData.id});
     };
 
     bootstrapAsync();
@@ -87,26 +95,32 @@ function App(){
         //Aquí hay que ver de enviar el token de acceso al servidor
         //para autenticar al usuario. Y luego almacenarlo localmente
         try {
-          userToken = await AsyncStorage.setItem('@authToken', data.usuario);
+          var userData = {
+            usuario: data.usuario,
+            id: data.id
+          }
+          console.log("ID: ", data)
+          await AsyncStorage.setItem('@authToken', JSON.stringify(userData));
         }
         catch (e){
           console.log(e)
         }
         //await AsyncStorage.setItem('@user_data', data);
-        dispatch({ type: 'SIGN_IN', token: userToken});
+        dispatch({ type: 'SIGN_IN', token: userData.usuario, user_id: userData.id});
       },
       signOut: async () => {
-        var userToken
+        var userToken;
         try {
           userToken = await AsyncStorage.removeItem('@authToken');
         } catch(e) {
-          console.log(e)
+          console.log(e);
         }
         dispatch({ type: 'SIGN_OUT',  isSignout: true})
       },
       signUp: async data => {
-        dispatch({ type: 'SIGN_IN', token: data.usuario});
-      }
+        dispatch({ type: 'SIGN_IN', token: data.usuario, user_id: data.id_cliente});
+      },
+ 
     }),
     []
   );
@@ -132,6 +146,7 @@ function App(){
           </>
         )}
         <Stack.Screen name="CreateUser" component={CreateUser} />
+        <Stack.Screen name="Pedido" component={Pedido}/>
 
         </Stack.Navigator>
       </NavigationContainer>

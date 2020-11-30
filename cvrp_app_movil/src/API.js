@@ -56,6 +56,29 @@ class API{
         return data;
     } 
 
+    static enviarPedido = async (encabezado, detalles) => {
+        console.log(encabezado);
+        let body = {
+            ...encabezado,
+            detalles: detalles
+        };
+
+        let options = {
+            body: JSON.stringify(body),
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json"
+              },
+        };
+
+        var url = `${END_POINT}enviar_pedido.php`;
+        const query = await fetch(url, options);
+        const respuesta = await query.text();
+        console.log(respuesta);
+        console.log("Se envió pruductos");
+        return respuesta;
+    }
+
 }
 
 export default API

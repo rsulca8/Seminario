@@ -23,7 +23,7 @@ const Login = ({navigation}) => {
         alert("OK");
         user_data = await API.getUserInfo(user);
         signIn(user_data);
-        navigation.navigate('Home')
+        navigation.navigate('Home');
         break;
       case "contraseña incorrecta":
         alert("contraseña incorrecta");

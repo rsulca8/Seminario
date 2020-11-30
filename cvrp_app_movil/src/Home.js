@@ -2,22 +2,25 @@ import React, {useEffect} from 'react'
 //import { View , Text, StyleSheet, Image, Button} from 'react-native'
 import AuthContext from "./AuthContext"
 import API from "./API"
+import Pedidos from './Pedido'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Productos from "./Productos"
 import UserProfile from './UserProfile'
-import prueba from './prueba'
+import { createStackNavigator } from '@react-navigation/stack';
 
-const tabNavigator = createBottomTabNavigator()
-
+const drawNavigator = createDrawerNavigator()
+const stackPedido = createStackNavigator()
+ 
 function Home(){
   return(
-      <tabNavigator.Navigator>
-        <tabNavigator.Screen name="UserProfile" component={UserProfile}/>
-        <tabNavigator.Screen name="Productos" component={Productos}/>
-        <tabNavigator.Screen name="Prueba" component={prueba}/>
-      </tabNavigator.Navigator>
+      <drawNavigator.Navigator>
+        <drawNavigator.Screen name="UserProfile" component={UserProfile}/>
+        <drawNavigator.Screen name="Productos" component={Productos}/>
+      </drawNavigator.Navigator>
   )
 }
+//<stackPedido.Screen name="Pedidos" component={Pedidos}/>
 export default Home
